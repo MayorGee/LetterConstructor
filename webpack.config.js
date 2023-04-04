@@ -65,18 +65,18 @@ const config = {
                 NODE_ENV: '"' + NODE_ENV + '"'
             }
         }),
-        // new CopyWebpackPlugin(
-        //     [
-        //         {
-        //             from: './src/icons',
-        //             to: 'assets/icons'
-        //         },
-        //         {
-        //             from: './src/data',
-        //             to: 'data/accounts.json'
-        //         }
-        //     ]
-        // ),
+        new CopyWebpackPlugin(
+            [
+                {
+                    from: './src/icons',
+                    to: 'assets/icons'
+                },
+                {
+                    from: './src/data',
+                    to: 'data/accounts.json'
+                }
+            ]
+        ),
         new VueLoaderPlugin()
     ],
     module: {
@@ -138,7 +138,7 @@ const config = {
                 loader: 'svg-sprite-loader'
             },
             {
-                test: /\.(png|jpg|gif)$/,
+                test: /\.(png|jpg|gif|svg)$/,
                 loader: 'file-loader',
                 query: {
                     name: '[name].[ext]?[hash]',

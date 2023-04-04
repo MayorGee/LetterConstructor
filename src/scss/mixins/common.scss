@@ -19,7 +19,7 @@
 
 @mixin size(
     $width: null, 
-    $height: null,
+    $height: auto,
     $max-width: null,
     $min-width: null,
     $max-height: null,

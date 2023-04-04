@@ -1,0 +1,34 @@
+{
+  "templates": [
+    {
+      "id": 1,
+      "title": "Header",
+      "code": "<header>Header</header>",
+      "selected": false
+    },
+    {
+      "id": 2,
+      "title": "Intro",
+      "code": "<h2>Intro Header</h2><p>Intro Description</p>",
+      "selected": false
+    },
+    {
+      "id": 3,
+      "title": "Section",
+      "code": "<section>Section</section>",
+      "selected": false
+    },
+    {
+      "id": 4,
+      "title": "Aside",
+      "code": "<aside>Aside</aside>",
+      "selected": false
+    },
+    {
+      "id": 5,
+      "title": "Footer",
+      "code": "<footer>Footer</footer>",
+      "selected": false
+    }
+  ]
+}

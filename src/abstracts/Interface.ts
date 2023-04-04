@@ -1,17 +1,7 @@
-export interface Account {
+export interface Template {
     id: string,
-    firstName: string,
-    lastName: string,
-    avatar: string,
-    tag: string
-}
-
-export interface LogMessage {
-    type: string,
-    message: string
-}
-
-export interface IconAttributes {
-    src: string,
-    alt: string
+    title: string,
+    code: string,
+    selected: boolean
+    active?: boolean
 }
