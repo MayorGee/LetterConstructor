@@ -59,13 +59,11 @@ export default class Popup extends Vue {
         $justify-content: space-evenly, 
         $align-items:center
     );
-
     @include size(30rem, 15rem);
+    @include text-format($color: $black);
     
     margin: 0 1rem;
     padding: 1rem 0;
-
-    color: $black;
 
     background-color: $white;
     border-radius: 1rem;
@@ -85,8 +83,7 @@ export default class Popup extends Vue {
 
     &__button {
         @include size(9rem, 3rem);
-        
-        font-weight: 700;
+        @include text-format($weight: 700);
                 
         border: none;
         border-radius: 0.5rem;
@@ -99,7 +96,8 @@ export default class Popup extends Vue {
     }
 
     &__button_proceed {
-        color: $white;
+        @include text-format($color: $white);
+        
         background: $light-green;
     }
 }

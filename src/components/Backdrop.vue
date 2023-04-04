@@ -1,9 +1,11 @@
 <template>
-    <div class="backdrop">
+    <div 
+        class="backdrop"
+        @click="exit($event)">
         <Popup
             :header="header"
             :hasInput="hasInput"
-            @exit="exit"
+            @exit="exit($event)"
             @proceed="proceed"
         />
     </div>
@@ -24,8 +26,12 @@ export default class Backdrop extends Vue {
     @Prop() header: string;
     @Prop() hasInput: boolean;
 
-    exit() {
-        this.$emit('exit');
+    exit(ev: Event) {
+        const eventTarget = (ev.target as HTMLElement);
+
+        if (eventTarget.className.includes('popup__button_exit') || !eventTarget.className.includes('popup')) {
+            this.$emit('exit');
+        }
     }
 
     proceed(popupData: string) {
@@ -42,8 +48,11 @@ export default class Backdrop extends Vue {
         $justify-content: center, 
         $align-items: center
     );
-
     @include size(100%, 100%);
+    
+    top: 0;
+    right: 0;
+    left: 0;
 
     position: fixed;
     background-color: $faint-black;

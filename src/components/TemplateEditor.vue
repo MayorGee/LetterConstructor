@@ -38,7 +38,7 @@ export default class TemplateEditor extends Vue {
     @include size(35%);
     
     &__title {
-        @include text-format(1.5rem, $color: $light-green);
+        @include text-format(1.8rem, $color: $light-green);
     }
 
     &__content {
@@ -53,8 +53,7 @@ export default class TemplateEditor extends Vue {
 
     &__code {
         @include size(100%, 100%);
-
-        color: $white;
+        @include text-format($color: $white);
 
         background: inherit;
         border: none;

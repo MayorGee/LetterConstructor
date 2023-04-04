@@ -1,11 +1,30 @@
 <template>
     <li v-if="!template.selected"
         class="template"
-        @click="handleClickTemplate"
+        @click="handleClickTemplate($event)"
     >
-        <span class="template__title">
+        <span 
+            class="template__title"
+            
+        >
             {{ template.title }}
         </span>
+        <span>
+            <img 
+                src="assets/icons/delete.png"
+                alt="Template Delete Icon"
+                class="template__delete-icon"
+            />
+        </span>
+
+        <Backdrop 
+            v-if="showDeleteTemplateBackdrop"
+            header="Proceed to Delete?"
+            :hasInput="false"
+            @exit="handleExitBackdrop"
+            @proceed="handleProceedBackdrop" 
+        />
+        
     </li>                                    
 </template>
 
@@ -13,19 +32,51 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import { Action } from 'vuex-class';
 import { Template } from '../abstracts/Interface';
+import Backdrop from './Backdrop.vue';
 
-@Component
+@Component({
+    components: {
+        Backdrop
+    }
+})
 export default class TemplateItem extends Vue {
     public name: string = 'TemplateItem';
+    public showDeleteTemplateBackdrop: boolean = false;
 
     @Prop({ required: true }) template: Template;
     
-    @Action('selectTemplate') selectTemplate: Function;
     @Action('activateTemplate') activateTemplate: Function;
+    @Action('deleteTemplate') deleteTemplate: Function;
+    @Action('selectTemplate') selectTemplate: Function;
 
-    handleClickTemplate() {
-        this.selectTemplate(this.template);
-        this.activateTemplate(this.template);
+    handleClickTemplate(ev: Event) {
+        const eventTarget = (ev.target as HTMLElement);
+
+        if (eventTarget.className.includes('template__delete-icon')) {
+            return this.showBackdrop()
+        }
+
+        if (eventTarget.className.includes('template')) {
+            this.selectTemplate(this.template);
+            this.activateTemplate(this.template);
+        }
+    }
+
+    handleExitBackdrop() {
+        this.hideBackdrop();
+    }
+
+    handleProceedBackdrop() {
+        this.hideBackdrop();
+        this.deleteTemplate(this.template);
+    }
+
+    hideBackdrop() {
+        this.showDeleteTemplateBackdrop = false;
+    }
+
+    showBackdrop() {
+        this.showDeleteTemplateBackdrop = true;
     }
 }
 </script>
@@ -35,7 +86,6 @@ export default class TemplateItem extends Vue {
 
 .template {
     @include flex($justify-content: space-between);
-    
     @include size(100%);
 
     padding: 0.3rem 0.5rem;
@@ -45,5 +95,9 @@ export default class TemplateItem extends Vue {
     border-radius: 0.2rem;
 
     cursor: pointer;
+
+    &__delete-icon {
+        @include size(2rem, 2rem);
+    }
 }
 </style>

@@ -73,16 +73,21 @@ export default class TemplateSection extends Vue {
             $justify-content: space-between,
             $align-items: center
         );
-
-        color: $light-green;
-        font-weight: 550;
-        text-decoration: none;
+        @include text-format(
+            1.8rem, 
+            $color: $light-green,
+            $weight: 550,
+            $text-decoration: none
+        );
 
         cursor: pointer;
     }
     
     &__title {
-        @include text-format(1.5rem, $color: $light-green);
+        @include text-format(
+            1.8rem, 
+            $color: $light-green
+        );
     }
 
     &__content {
@@ -105,11 +110,11 @@ export default class TemplateSection extends Vue {
 
     &__button {
         @include size(15rem);
+        @include text-format($weight: bold);
 
         display: block;
         margin: 1.5rem auto;
 
-        font-weight: bold;
         cursor: pointer;
     }
 }

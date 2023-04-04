@@ -2,19 +2,19 @@ import { Template } from '../abstracts/Interface';
 import TemplateApi from './TemplateApi';
 
 export default class TemplateModel {
-    public static getSelectedTemplates(templates: Template[]): Template[] {
+    static getSelectedTemplates(templates: Template[]): Template[] {
         return templates.filter((template: Template) => {
             return template.selected;
         });
     }
 
-    public static getActiveTemplate(templates: Template[]): Template {
+    static getActiveTemplate(templates: Template[]): Template {
         const activeTemplate = templates.find((template: Template) => template.active) as Template;
 
         return activeTemplate;
     }
 
-    public static async selectTemplate(templates: Template[], templateToSelect: Template): Promise<Template[]> {
+    static async selectTemplate(templates: Template[], templateToSelect: Template): Promise<Template[]> {
         return templates.map((template: Template) => {
             if (template.id === templateToSelect.id) {
                 template.selected = true;
@@ -24,7 +24,7 @@ export default class TemplateModel {
         });
     }
 
-    public static async unselectTemplate(templates: Template[], templateToUnselect: Template): Promise<Template[]> {
+    static async unselectTemplate(templates: Template[], templateToUnselect: Template): Promise<Template[]> {
         return templates.map((template: Template) => {
             if (template.id == templateToUnselect.id) {
                 template.selected = false;
@@ -34,7 +34,7 @@ export default class TemplateModel {
         });
     }
 
-    public static async getNewTemplate(templateTitle: string) {
+    static async getNewTemplate(templateTitle: string) {
         const templateId = Date.now().toString();
 
         return {
@@ -45,7 +45,7 @@ export default class TemplateModel {
         }
     }
 
-    public static async refreshTemplate(selectedTemplates: Template[], templateToRefresh: Template): Promise<Template[]> {
+    static async refreshTemplate(selectedTemplates: Template[], templateToRefresh: Template): Promise<Template[]> {
         const initialTemplates = await TemplateApi.getTemplates();
         const initialTemplate = initialTemplates.find((template: Template) => template.id == templateToRefresh.id) as Template;
         
@@ -58,7 +58,7 @@ export default class TemplateModel {
         });
     }
 
-    public static async activateTemplate(templates: Template[], templateToActivate: Template): Promise<Template[]> {
+    static async activateTemplate(templates: Template[], templateToActivate: Template): Promise<Template[]> {
         return templates.map((template: Template) => {
             if (template.id === templateToActivate.id) {
                 template.active = true;
@@ -78,8 +78,7 @@ export default class TemplateModel {
         });
     }
 
-
-    // public static deleteTemplate(templates: Template[], templateId: string): Template[] {
-    //     return templates.filter(template => template.id !== templateId);
-    // }
+    static deleteTemplate(templates: Template[], templateId: string): Template[] {
+        return templates.filter(template => template.id !== templateId);
+    }
 }

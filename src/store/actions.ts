@@ -46,11 +46,11 @@ const actions: ActionTree<State, any> = {
         commit('togglePopup');
     },
 
-    // async deleteTemplate({ commit, state }, templateToDelete: Template) {
-    //     const templates = TemplateModel.deleteTemplate(state.templates, templateToDelete.id);
+    async deleteTemplate({ commit, state }, templateToDelete: Template) {
+        const templates = TemplateModel.deleteTemplate(state.templates, templateToDelete.id);
         
-    //     commit('setTemplates', templates);
-    // },
+        commit('setTemplates', templates);
+    },
 }
 
 export default actions;

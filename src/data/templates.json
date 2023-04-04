@@ -29,6 +29,12 @@
       "title": "Footer",
       "code": "<footer>Footer</footer>",
       "selected": false
+    },
+    {
+      "id": "1680642041757",
+      "title": "Bomboclaat",
+      "code": "<em>Replace this with your code, Code away baby!</em>",
+      "selected": false
     }
   ]
 }

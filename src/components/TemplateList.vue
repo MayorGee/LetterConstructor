@@ -3,8 +3,7 @@
         <TemplateItem 
             v-for="template in templates"
             :key="template.id"
-            :template="template" 
-            class="template-list__item"
+            :template="template"
         />
     </ul>                                     
 </template>

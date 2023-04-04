@@ -43,7 +43,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import { Template } from '../abstracts/Interface';
-import { copyToClipboard } from '../abstracts/common';
+import  SpecialMethod from '../model/SpecialMethod';
 
 @Component
 export default class LetterView extends Vue {
@@ -63,7 +63,7 @@ export default class LetterView extends Vue {
             rawCode += selectedTemplate.code;
         })
 
-        await copyToClipboard(rawCode);
+        await SpecialMethod.copyToClipboard(rawCode);
     }
 
     highlightAll() {
@@ -75,13 +75,12 @@ export default class LetterView extends Vue {
 <style lang="scss" scoped>
 @import '../scss/styles';
 
-
 .letter-view {
     @include flex(column);
     @include size(35%);
     
     &__title {
-        @include text-format(1.5rem, $color: $light-green);
+        @include text-format(1.8rem, $color: $light-green);
     }
 
     &__header {

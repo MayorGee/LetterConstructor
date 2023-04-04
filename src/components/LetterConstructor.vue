@@ -6,7 +6,7 @@
         <Backdrop 
             v-if="showAddTemplateBackdrop"
             header="Add Template"
-            hasInput="true"
+            :hasInput="true"
             @exit="handleExitBackdrop"
             @proceed="handleProceedBackdrop" 
         />
