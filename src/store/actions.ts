@@ -14,7 +14,7 @@ const actions: ActionTree<State, any> = {
     async addTemplate({ commit }, templateTitle: string) {
         const newTemplate = await TemplateModel.getNewTemplate(templateTitle);
 
-        // await TemplateApi.addTemplate(newTemplate);
+        await TemplateApi.addTemplate(newTemplate);
         commit('addTemplate', newTemplate);
     },
 
