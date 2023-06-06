@@ -67,7 +67,7 @@ export default class SelectedTemplate extends Vue {
     padding: 0.3rem 0.5rem;
     margin: 0.2rem 0;
 
-    border: 1px solid $black;
+    border: 0.1rem solid $black;
     border-radius: 0.2rem;
 
     cursor: pointer;

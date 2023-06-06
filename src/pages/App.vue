@@ -17,7 +17,7 @@ export default class App extends Vue {
 
     @Action('loadTemplates') loadTemplates: Function;
 
-    async created() {
+    created() {
         this.loadTemplates();
     }
 }

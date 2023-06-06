@@ -1,11 +1,24 @@
 import { ActionTree } from 'vuex';
 import { Template } from '../abstracts/Interface';
+import LocalStorage from '../LocalStorage';
 import TemplateApi from '../model/TemplateApi';
 import TemplateModel from '../model/TemplateModel';
 import { State } from './types';
 
 const actions: ActionTree<State, any> = {
-    async loadTemplates({ commit }) {
+    async loadTemplates({ dispatch, state }) {
+        const localState = LocalStorage.getStore();
+
+        if(localState) {
+            return this.replaceState(
+                Object.assign({}, state, localState)
+            );
+        }
+
+        dispatch('refreshTemplates');
+    },
+
+    async refreshTemplates({ commit }) {
         const templates = await TemplateApi.getTemplates();
         
         commit('setTemplates', templates);
@@ -14,7 +27,7 @@ const actions: ActionTree<State, any> = {
     async addTemplate({ commit }, templateTitle: string) {
         const newTemplate = await TemplateModel.getNewTemplate(templateTitle);
 
-        await TemplateApi.addTemplate(newTemplate);
+        // await TemplateApi.addTemplate(newTemplate);
         commit('addTemplate', newTemplate);
     },
 

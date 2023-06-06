@@ -4,7 +4,7 @@
         <TemplateEditor :template="activeTemplate" />
         <LetterView :selectedTemplates="selectedTemplates" />
         <Backdrop 
-            v-if="showAddTemplateBackdrop"
+            v-if="isActiveAddTemplateBackdrop"
             header="Add Template"
             :hasInput="true"
             @exit="handleExitBackdrop"
@@ -32,18 +32,18 @@ import Backdrop from './Backdrop.vue';
 })
 export default class LetterConstructor extends Vue {
     public name: string = 'LetterConstructor';
-    public showAddTemplateBackdrop: boolean = false;
+    public isActiveAddTemplateBackdrop: boolean = false;
 
     @Action('addTemplate') addTemplate: Function;
     @Getter('activeTemplate') activeTemplate: Template;
     @Getter('selectedTemplates') selectedTemplates: Template[];
 
     handleExitBackdrop() {
-        this.hideBackdrop();
+        this.hideAddTemplateBackdrop();
     }
 
     handleProceedBackdrop(templateTitle: string) {
-        this.hideBackdrop();
+        this.hideAddTemplateBackdrop();
 
         if(templateTitle) {
             this.addTemplate(templateTitle);
@@ -51,15 +51,15 @@ export default class LetterConstructor extends Vue {
     }
 
     handleAddTemplate() {
-        this.showBackdrop()
+        this.showAddTemplateBackdrop()
     }
 
-    hideBackdrop() {
-        this.showAddTemplateBackdrop = false;
+    hideAddTemplateBackdrop() {
+        this.isActiveAddTemplateBackdrop = false;
     }
 
-    showBackdrop() {
-        this.showAddTemplateBackdrop = true;
+    showAddTemplateBackdrop() {
+        this.isActiveAddTemplateBackdrop = true;
     }
 }
 </script>

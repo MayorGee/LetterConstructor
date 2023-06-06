@@ -9,6 +9,7 @@ const mutations = {
     addTemplate(state: State, newTemplate: Template) {
         state.templates.push(newTemplate);
     },
+    
 }
 
 export default mutations;

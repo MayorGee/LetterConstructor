@@ -26,7 +26,7 @@
                     <img
                         src="assets/icons/copy-to-clipboard.png"
                         alt="clipboard icon"
-                        @click="highlightAll"
+                        @click="copyRawCode"
                     />
                 </p>
                 <div
@@ -43,7 +43,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import { Template } from '../abstracts/Interface';
-import  SpecialMethod from '../model/SpecialMethod';
+import  SpecialMethods from '../model/SpecialMethods';
 
 @Component
 export default class LetterView extends Vue {
@@ -56,18 +56,14 @@ export default class LetterView extends Vue {
        this.showCode = !this.showCode
     }
 
-    async copyRawCode(selectedTemplates: Template[]) {
-        let rawCode: string = '';
+    async copyRawCode() {
+        let rawCode = '';
 
-        selectedTemplates.forEach((selectedTemplate) => {
+        this.selectedTemplates.forEach((selectedTemplate) => {
             rawCode += selectedTemplate.code;
         })
 
-        await SpecialMethod.copyToClipboard(rawCode);
-    }
-
-    highlightAll() {
-        this.copyRawCode(this.selectedTemplates)
+        await SpecialMethods.copyToClipboard(rawCode);
     }
 }
 </script>

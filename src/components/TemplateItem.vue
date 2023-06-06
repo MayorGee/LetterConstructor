@@ -18,7 +18,7 @@
         </span>
 
         <Backdrop 
-            v-if="showDeleteTemplateBackdrop"
+            v-if="isActiveDeleteTemplateBackdrop"
             header="Proceed to Delete?"
             :hasInput="false"
             @exit="handleExitBackdrop"
@@ -41,7 +41,7 @@ import Backdrop from './Backdrop.vue';
 })
 export default class TemplateItem extends Vue {
     public name: string = 'TemplateItem';
-    public showDeleteTemplateBackdrop: boolean = false;
+    public isActiveDeleteTemplateBackdrop: boolean = false;
 
     @Prop({ required: true }) template: Template;
     
@@ -53,7 +53,7 @@ export default class TemplateItem extends Vue {
         const eventTarget = (ev.target as HTMLElement);
 
         if (eventTarget.className.includes('template__delete-icon')) {
-            return this.showBackdrop()
+            return this.showDeleteTemplateBackdrop()
         }
 
         if (eventTarget.className.includes('template')) {
@@ -63,20 +63,20 @@ export default class TemplateItem extends Vue {
     }
 
     handleExitBackdrop() {
-        this.hideBackdrop();
+        this.hideDeleteTamplateBackdrop();
     }
 
     handleProceedBackdrop() {
-        this.hideBackdrop();
+        this.hideDeleteTamplateBackdrop();
         this.deleteTemplate(this.template);
     }
 
-    hideBackdrop() {
-        this.showDeleteTemplateBackdrop = false;
+    hideDeleteTamplateBackdrop() {
+        this.isActiveDeleteTemplateBackdrop = false;
     }
 
-    showBackdrop() {
-        this.showDeleteTemplateBackdrop = true;
+    showDeleteTemplateBackdrop() {
+        this.isActiveDeleteTemplateBackdrop = true;
     }
 }
 </script>

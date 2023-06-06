@@ -5,9 +5,9 @@
                 Templates
             </h1>
 
-            <a 
-                href=""
+            <p 
                 class="template-section__action"
+                @click="handleRefreshTemplates"
             >
                 <img 
                     src="assets/icons/refresh.png"
@@ -15,21 +15,25 @@
                     class="template-section__refresh-icon"
                 />
                 <span>Refresh</span>
-            </a>
+            </p>
         </div>
                 
         <div class="template-section__content">
-            <p class="template-section__info">Click template to display it on the Editor</p>
+            <p class="template-section__info">
+                Click template to display it on the Editor
+            </p>
 
             <SelectedTemplates />
 
-            <p class="template-section__info">Select template from options below</p>
+            <p class="template-section__info">
+                Select template from options below
+            </p>
 
             <TemplateList />
 
             <button 
                 class="template-section__button"
-                @click="onAddTemplate"
+                @click="addTemplate"
             > 
                 Add Template
             </button>
@@ -39,6 +43,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import { Action } from 'vuex-class';
 import SelectedTemplates from './SelectedTemplates.vue';
 import TemplateList from './TemplateList.vue';
 
@@ -51,8 +56,14 @@ import TemplateList from './TemplateList.vue';
 export default class TemplateSection extends Vue {
     public name: string = 'TemplateSection';
 
-    onAddTemplate() {
+    @Action('refreshTemplates') refreshTemplates: Function;
+
+    addTemplate() {
         this.$emit('addTemplate');
+    }
+
+    handleRefreshTemplates() {
+        this.refreshTemplates();
     }
 }
 </script>

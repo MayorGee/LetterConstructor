@@ -1,8 +1,7 @@
 import { State } from "./types";
 
 const state: State = {
-    templates: [],
-    selectedTemplates: []
+    templates: []
 }
 
 export default state;

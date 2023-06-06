@@ -1,4 +1,4 @@
-export default class SpecialMethod {
+export default class SpecialMethods {
     static async copyToClipboard(text: string) {
         if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
             return navigator.clipboard.writeText(text);
